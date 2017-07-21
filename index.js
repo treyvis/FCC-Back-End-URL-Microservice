@@ -38,9 +38,10 @@ app.get('/*?', (req, res) => {
 			db.collection('urls').insert(doc, (err,doc) => {
 				if (err) throw err;
 				console.log('Generated URL:','https://fcc-urlmicroservice.glitch.me/' + doc.insertedIds[0]);
+				const addedRes = {"url":'https://fcc-urlmicroservice.glitch.me/' + doc.insertedIds[0]};
+				res.json(addedRes);
 			});
 		});
-		res.send(data + ' is a valid URL');
 	} else if (idRegex.test(data)) {
 		mongo.connect(mongoURI, (err, db) => {
 			db.collection('urls').find(ObjectId(data)).next((err, doc) => {
@@ -49,7 +50,8 @@ app.get('/*?', (req, res) => {
 			});
 		});
 	} else {
-		res.send(data + ' is not a valid URL or ID');
+		const error = {"error":"Invalid URL"};
+		res.json(error);
 	}
 });
 
