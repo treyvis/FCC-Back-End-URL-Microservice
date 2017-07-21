@@ -18,6 +18,6 @@
   "homepage": "https://github.com/treyvis/FCC-Back-End-URL-Microservice#readme",
   "dependencies": {
     "express": "^4.15.3",
-    "mongo": "^0.1.0"
+    "mongodb": "^2.2.30"
   }
 }
